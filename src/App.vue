@@ -9,14 +9,12 @@ function parseString(input:string): string {
     return input
   }
 
-  if (input[0] == "'") {
-    return input.slice(1, input.length - 1)
-  } else if (input[0] == '"') {
+  if (input[0] == "'" || input[0] == '"') {
     let ret = ""
     for (let index = 1; index < input.length - 1; index++) {
       const element = input[index];
-      if (element == "\\" && index + 1 < input.length - 1 && input[index + 1] == '"') {
-        ret += '"'
+      if (element == "\\" && index + 1 < input.length - 1) {
+        ret += input[index + 1]
         index++
       } else {
         ret += element
